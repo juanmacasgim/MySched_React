@@ -1,0 +1,21 @@
+.calendar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.calendar-list li {
+  margin-bottom: 12px;
+}
+
+.calendar-list .calendar-btn {
+  width: 100%;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+
+.calendar-btn {
+    flex: 1; 
+    justify-content: 'flex-start';
+    gap: 8;
+}

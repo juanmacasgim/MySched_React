@@ -1,0 +1,22 @@
+.Login {
+    padding-top: 65px; /* Ajusta según la altura de tu barra */
+}
+
+.Login-Header {
+    background: rgba(240, 248, 255, 0.7); /* aliceblue con 70% opacidad */
+    color: #1976d2;
+    padding: 16px 0;
+    text-align: left;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    backdrop-filter: blur(4px); /* Opcional: efecto de desenfoque */
+}
+
+.Login-Header h1 {
+    font-size: 24px;
+    margin: 0;
+    padding-left: 16px;
+}

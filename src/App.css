@@ -1,27 +1,18 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body {
+  margin: 0;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+#root {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  /*padding-top: 70px;*/
 }
 
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -33,10 +24,105 @@
   }
 }
 
-.card {
-  padding: 2em;
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
 }
 
-.read-the-docs {
-  color: #888;
+.input-text {
+  flex: 3;
+  margin: 10px;
+}
+
+.flex-item {
+  flex: 1;
+  margin: 10px;
+
+}
+
+/* .navbar-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+} */
+
+/* .navbar-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-top: 10px;
+} */
+
+/* .navbar-icons {
+  display: flex;
+} */
+
+/* .card {
+  padding: 2em;
+} */
+
+.divinput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.divborder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #685f5f;
+  border-radius: 5px;
+  width: 350px;
+  margin-bottom: 10px;
+  background-color: white;
+  color: black;
+}
+
+textarea {
+  resize: none;
+}
+
+.input-text {
+  border: 2px solid #333;
+  padding: 10px;
+  border-radius: 5px;
+  width: 300px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+.input-edit {
+  border: 2px solid #333;
+  padding: 10px;
+  border-radius: 5px;
+  width: 280px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+
+.home {
+    min-height: 82.7vh;
+    background-image: url('./assets/FotoStock.jpg');
+    background-size: cover;
+    padding-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: right;
+    padding-right: 5vw;
+    color : white;
+    
+}
+
+.home-content {
+    max-width: 600px;
+    width: 100%;
 }
