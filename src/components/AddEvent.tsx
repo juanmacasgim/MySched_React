@@ -31,6 +31,13 @@ const AddEvent: React.FC<AddEventProps> = ({ open, onClose, onSave, initialEvent
         if (!title.trim() || !startDate || !startTime || !endDate || !endTime) return;
         const start = new Date(`${startDate}T${startTime}`);
         const end = new Date(`${endDate}T${endTime}`);
+        console.log('Saving event:', {
+            title,
+            description,
+            startDate: start,
+            endDate: end,
+            color: initialEvent?.color || '#1976d2',
+        });
         onSave({
             title,
             description,

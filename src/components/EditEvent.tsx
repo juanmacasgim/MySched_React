@@ -22,9 +22,9 @@ const EditEvent: React.FC<EditEventProps> = ({ open, event, onClose, onSave }) =
             setTitle(event.title || '');
             setDescription(event.description || '');
             setStartDate(event.startDate ? new Date(event.startDate).toISOString().slice(0, 10) : '');
-            setStartTime(event.startDate ? new Date(event.startDate).toISOString().slice(11, 16) : '');
+            setStartTime(event.startDate ? new Date(event.startDate).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', hour12: false }) : '');
             setEndDate(event.endDate ? new Date(event.endDate).toISOString().slice(0, 10) : '');
-            setEndTime(event.endDate ? new Date(event.endDate).toISOString().slice(11, 16) : '');
+            setEndTime(event.endDate ? new Date(event.endDate).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', hour12: false }) : '');
         }
     }, [event, open]);
 
@@ -33,14 +33,12 @@ const EditEvent: React.FC<EditEventProps> = ({ open, event, onClose, onSave }) =
         const start = new Date(`${startDate}T${startTime}`);
         const end = new Date(`${endDate}T${endTime}`);
 
-        const startUTC = new Date(start.getTime() - start.getTimezoneOffset() * 60000);
-        const endUTC = new Date(end.getTime() - end.getTimezoneOffset() * 60000);
         onSave({
             ...event,
             title,
             description,
-            startDate: startUTC,
-            endDate: endUTC,
+            startDate: start,
+            endDate: end,
         });
         onClose();
     };

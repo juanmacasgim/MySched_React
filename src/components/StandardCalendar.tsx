@@ -113,8 +113,8 @@ const StandardCalendar: React.FC<StandardCalendarProps> = ({ events = [], calend
                                     <EventItem
                                         key={ev.id.toString()}
                                         title={ev.title}
-                                        time_start={new Date(ev.startDate).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })}
-                                        time_end={new Date(ev.endDate).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })}
+                                        time_start={new Date(ev.startDate).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit'})}
+                                        time_end={new Date(ev.endDate).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit'})}
                                         color={ev.color}
                                         onClick={() => {
                                             setSelectedEvent(ev);
