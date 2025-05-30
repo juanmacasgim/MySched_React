@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button, Grid} from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button, Grid } from '@mui/material';
 import { EventInterface } from '../interfaces/EventInterface';
 
 interface AddEventProps {
@@ -65,7 +65,7 @@ const AddEvent: React.FC<AddEventProps> = ({ open, onClose, onSave, initialEvent
                     onChange={e => setDescription(e.target.value)}
                     margin="normal"
                 />
-                <Grid container spacing={2}>
+                <Grid spacing={2}>
                     <Grid size={6}>
                         <TextField
                             label="Fecha inicio"
