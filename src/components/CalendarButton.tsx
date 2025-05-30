@@ -36,7 +36,7 @@ const CalendarButton: React.FC<Props> = ({
 
     const handleMenuClose = (
         event?: React.MouseEvent<HTMLElement> | object,
-        reason?: "backdropClick" | "escapeKeyDown"
+        //reason?: "backdropClick" | "escapeKeyDown"
     ) => {
         if (event && 'stopPropagation' in event && typeof event.stopPropagation === 'function') {
             event.stopPropagation();

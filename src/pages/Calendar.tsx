@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navbar } from '../components/Navbar';
 import MyButton from '../components/MyButton';
 import CalendarButton from '../components/CalendarButton';
@@ -36,7 +36,6 @@ function normalizeEvent(ev: any): EventInterface {
 }
 
 function Calendar() {
-    const token = localStorage.getItem('MySchedToken');
     const [selectedCalendar, setSelectedCalendar] = useState<CalendarInterface | null>(null);
     const [calendars, setCalendars] = useState<CalendarInterface[]>([]);
     const [addOpen, setAddOpen] = useState(false);

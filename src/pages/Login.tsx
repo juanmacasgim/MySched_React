@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import '../styles/Login.css'
 import MyButton from '../components/MyButton';
 import AuthForm from '../components/AuthForm';
@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 
 function Login() {
-    const [login, setLogin] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
