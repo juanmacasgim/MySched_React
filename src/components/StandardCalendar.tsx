@@ -68,18 +68,6 @@ const StandardCalendar: React.FC<StandardCalendarProps> = ({ events = [], calend
         date1.getMonth() === date2.getMonth() &&
         date1.getDate() === date2.getDate();
 
-    const handleCreateEvent = (event: Omit<EventInterface, 'id' | 'calendarId'>) => {
-        const newEvent: EventInterface = {
-            ...event,
-            id: BigInt(Date.now()), // Simulación de ID único
-            calendarId: BigInt(calendar.id),
-            startDate: new Date(event.startDate),
-            endDate: new Date(event.endDate),
-        };
-
-        setAddingEvent(false);
-    }
-
     return (
         <div className="calendar-wrapper">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
