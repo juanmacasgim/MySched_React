@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button } from '@mui/material';
-import Grid from '@mui/material/Grid';
+import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button, Grid} from '@mui/material';
 import { EventInterface } from '../interfaces/EventInterface';
 
 interface AddEventProps {
@@ -67,7 +66,7 @@ const AddEvent: React.FC<AddEventProps> = ({ open, onClose, onSave, initialEvent
                     margin="normal"
                 />
                 <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                    <Grid size={6}>
                         <TextField
                             label="Fecha inicio"
                             type="date"
@@ -78,7 +77,7 @@ const AddEvent: React.FC<AddEventProps> = ({ open, onClose, onSave, initialEvent
                             InputLabelProps={{ shrink: true }}
                         />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid size={6}>
                         <TextField
                             label="Hora inicio"
                             type="time"
@@ -89,7 +88,7 @@ const AddEvent: React.FC<AddEventProps> = ({ open, onClose, onSave, initialEvent
                             InputLabelProps={{ shrink: true }}
                         />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid size={6}>
                         <TextField
                             label="Fecha fin"
                             type="date"
@@ -100,7 +99,7 @@ const AddEvent: React.FC<AddEventProps> = ({ open, onClose, onSave, initialEvent
                             InputLabelProps={{ shrink: true }}
                         />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid size={6}>
                         <TextField
                             label="Hora fin"
                             type="time"
