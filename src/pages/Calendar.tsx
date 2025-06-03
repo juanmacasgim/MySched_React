@@ -41,6 +41,7 @@ function Calendar() {
     const [addOpen, setAddOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const [editingEvent, setEditingEvent] = useState<EventInterface | null>(null);
+    const [editCalendarOpen, setEditCalendarOpen] = useState(false);
     const [calendarToEdit, setCalendarToEdit] = useState<CalendarInterface | null>(null);
     const [events, setEvents] = useState<EventInterface[]>([]);
 
@@ -139,7 +140,7 @@ function Calendar() {
         } catch (error) {
             enqueueSnackbar('Error al actualizar el calendario', { variant: 'error' });
         }
-        setEditOpen(false);
+        setEditCalendarOpen(false);
         setCalendarToEdit(null);
     };
 
@@ -227,9 +228,9 @@ function Calendar() {
                         onSave={handleCreateCalendar}
                     />
                     <AddCalendar
-                        open={editOpen}
+                        open={editCalendarOpen}
                         onClose={() => {
-                            setEditOpen(false);
+                            setEditCalendarOpen(false);
                             setCalendarToEdit(null);
                         }}
                         initialCalendar={calendarToEdit}
@@ -247,7 +248,7 @@ function Calendar() {
                                         onClick={() => setSelectedCalendar(cal)}
                                         onEdit={() => {
                                             setCalendarToEdit(cal);
-                                            setEditOpen(true);
+                                            setEditCalendarOpen(true);
                                         }}
                                         onDelete={() => handleDeleteCalendar(cal.id)}
                                     />
