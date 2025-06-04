@@ -5,6 +5,9 @@ import Snackbar from '@mui/material/Snackbar';
 import { login, register } from '../api/services';
 import { UserInterface } from '../interfaces/UserInterface';
 import { useNavigate } from 'react-router-dom';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import '../styles/AuthForm.css';
 
 function AuthForm() {
@@ -29,6 +32,32 @@ function AuthForm() {
     const [message, setMessage] = useState('');
     const [open, setOpen] = useState(false);
 
+    // Mostrar/ocultar contraseña
+    const [showPassword, setShowPassword] = useState(false);
+
+    // Validación de contraseña
+    const password = formData.password;
+    const passwordValidations = {
+        length: password.length >= 8,
+        upper: /[A-Z]/.test(password),
+        lower: /[a-z]/.test(password),
+        number: /[0-9]/.test(password),
+        special: /[^A-Za-z0-9]/.test(password),
+    };
+    const isPasswordValid = Object.values(passwordValidations).every(Boolean);
+
+    // Validación de campos de registro
+    const isRegisterValid =
+        formData.name.trim() !== '' &&
+        formData.birthdate.trim() !== '' &&
+        formData.email.trim() !== '' &&
+        isPasswordValid;
+
+    // Validación de campos de login
+    const isLoginValid =
+        formData.email.trim() !== '' &&
+        formData.password.trim() !== '';
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
@@ -43,15 +72,25 @@ function AuthForm() {
             return;
         }
 
+        if (!isLogin && !isPasswordValid) {
+            setMessage('La contraseña no cumple los requisitos');
+            setOpen(true);
+            return;
+        }
+
         const response = isLogin ? await login({ email, password } as UserInterface)
-                                 : await register(formData);
+            : await register(formData);
 
         if (response.status === 1) {
             setMessage(isLogin ? 'Inicio de sesión exitoso' : 'Registro exitoso');
             setOpen(true);
             setTimeout(() => navigate('/mysched/calendar'), 500);
         } else {
-            setMessage(response.message || 'Error en la autenticación');
+            if (response.status === 0 && response.message && isLogin) {
+                setMessage('Error al iniciar sesión: ' + response.message);
+            } else {
+                setMessage('Error en la autenticación');
+            }
             setOpen(true);
         }
     };
@@ -126,16 +165,53 @@ function AuthForm() {
 
                 <div className="form-group">
                     <label htmlFor="password">Contraseña</label>
-                    <input
-                        id="password"
-                        name="password"
-                        className="input-field"
-                        type="password"
-                        placeholder="Introduce tu contraseña"
-                        value={formData.password}
-                        onChange={handleChange}
-                        onKeyDown={handleKeyPress}
-                    />
+                    <div style={{ position: 'relative' }}>
+                        <input
+                            id="password"
+                            name="password"
+                            className="input-field"
+                            type={showPassword ? 'text' : 'password'}
+                            placeholder="Introduce tu contraseña"
+                            value={formData.password}
+                            onChange={handleChange}
+                            onKeyDown={handleKeyPress}
+                            style={{width: '92%' }}
+                        />
+                        <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={() => setShowPassword((show) => !show)}
+                            edge="end"
+                            style={{
+                                position: 'absolute',
+                                right: 10,
+                                top: '50%',
+                                transform: 'translateY(-50%)',
+                                padding: 4,
+                            }}
+                            tabIndex={-1}
+                        >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                    </div>
+                    {!isLogin && (
+                        <ul style={{ margin: '8px 0 0 0', padding: 0, listStyle: 'none', fontSize: 13 }}>
+                            <li style={{ color: passwordValidations.length ? 'green' : 'red' }}>
+                                {passwordValidations.length ? '✔' : '✖'} Mínimo 8 caracteres
+                            </li>
+                            <li style={{ color: passwordValidations.upper ? 'green' : 'red' }}>
+                                {passwordValidations.upper ? '✔' : '✖'} Al menos una mayúscula
+                            </li>
+                            <li style={{ color: passwordValidations.lower ? 'green' : 'red' }}>
+                                {passwordValidations.lower ? '✔' : '✖'} Al menos una minúscula
+                            </li>
+                            <li style={{ color: passwordValidations.number ? 'green' : 'red' }}>
+                                {passwordValidations.number ? '✔' : '✖'} Al menos un número
+                            </li>
+                            <li style={{ color: passwordValidations.special ? 'green' : 'red' }}>
+                                {passwordValidations.special ? '✔' : '✖'} Al menos un carácter especial
+                            </li>
+                        </ul>
+                    )}
                 </div>
 
                 <div className="button-container">
@@ -143,6 +219,7 @@ function AuthForm() {
                         variant="contained"
                         onClick={handleSubmit}
                         endIcon={<LoginIcon />}
+                        disabled={isLogin ? !isLoginValid : !isRegisterValid}
                     >
                         {isLogin ? 'Iniciar sesión' : 'Registrarse'}
                     </MyButton>

@@ -7,4 +7,5 @@ export interface ButtonInterface {
     onClick: () => void;
     endIcon?: React.ReactNode;
     children: React.ReactNode;
+    disabled?: boolean;
 }
