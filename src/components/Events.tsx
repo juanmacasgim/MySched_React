@@ -4,8 +4,8 @@ import EventItem from './EventItem';
 interface EventData {
     id: number | string;
     title: string;
-    startDate: string; // formato ISO o Date
-    endDate: string; // formato ISO o Date
+    startDate: string;
+    endDate: string;
     color?: string;
 }
 
@@ -14,7 +14,6 @@ interface EventsProps {
 }
 
 const Events: React.FC<EventsProps> = ({ events }) => {
-    // Ordena por hora de inicio
     const sorted = [...events].sort((a, b) =>
         new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
     );

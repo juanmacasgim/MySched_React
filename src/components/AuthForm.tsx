@@ -32,10 +32,8 @@ function AuthForm() {
     const [message, setMessage] = useState('');
     const [open, setOpen] = useState(false);
 
-    // Mostrar/ocultar contraseña
     const [showPassword, setShowPassword] = useState(false);
 
-    // Validación de contraseña
     const password = formData.password;
     const passwordValidations = {
         length: password.length >= 8,
@@ -46,14 +44,12 @@ function AuthForm() {
     };
     const isPasswordValid = Object.values(passwordValidations).every(Boolean);
 
-    // Validación de campos de registro
     const isRegisterValid =
         formData.name.trim() !== '' &&
         formData.birthdate.trim() !== '' &&
         formData.email.trim() !== '' &&
         isPasswordValid;
-
-    // Validación de campos de login
+        
     const isLoginValid =
         formData.email.trim() !== '' &&
         formData.password.trim() !== '';

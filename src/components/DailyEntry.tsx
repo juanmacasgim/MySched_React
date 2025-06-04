@@ -30,10 +30,8 @@ const DailyEntry: React.FC<Props> = ({ entries, onDelete, onEdit, onView }) => {
                                 <Typography variant="caption" color="textSecondary">
                                     {entry.created_at && entry.updated_at &&
                                         new Date(entry.created_at).getTime() === new Date(entry.updated_at).getTime() ? (
-                                        // Si son iguales, solo muestra "Creado"
                                         <>Creado: {new Date(entry.created_at).toLocaleString('es-ES', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' })}</>
                                     ) : (
-                                        // Si son distintas, muestra ambos
                                         <>
                                             Creado: {entry.created_at ? new Date(entry.created_at).toLocaleString('es-ES', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' }) : ''}
                                             {' | '}

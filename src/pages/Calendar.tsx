@@ -97,7 +97,6 @@ function Calendar() {
     const handleCreateCalendar = async (calendar: Omit<CalendarInterface, 'id' | 'user_id'>) => {
         try {
             const saved = await createCalendar(calendar as CalendarInterface);
-            // El calendario real está en saved.data
             if (saved && saved.data && saved.data.id) {
                 setCalendars([...calendars, saved.data]);
                 enqueueSnackbar('Calendario creado correctamente', { variant: 'success' });

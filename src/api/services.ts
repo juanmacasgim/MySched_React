@@ -30,11 +30,9 @@ export const register = async (user: UserInterface) => {
 
         return response.data;
     } catch (error: any) {
-        // Si la respuesta está disponible, la devuelve
         if (error.response) {
             return error.response.data;
         }
-        // Si no, lanza el error
         throw error;
     }
 };
@@ -55,11 +53,9 @@ export const login = async (user: UserInterface) => {
 
         return response.data;
     } catch (error: any) {
-        // Si la respuesta está disponible, la devuelve
         if (error.response) {
             return error.response.data;
         }
-        // Si no, lanza el error
         throw error;
     }
 };

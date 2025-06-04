@@ -13,7 +13,7 @@ const daysOfWeek = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
 function getMonthMatrix(year: number, month: number) {
     const matrix = [];
     const date = new Date(year, month, 1);
-    const firstDay = (date.getDay() + 6) % 7; // lunes = 0
+    const firstDay = (date.getDay() + 6) % 7;
 
     let current = new Date(year, month, 1 - firstDay);
 
@@ -38,7 +38,7 @@ interface StandardCalendarProps {
     editingEvent?: EventInterface | null;
     editOpen?: boolean;
     setEditOpen?: (open: boolean) => void;
-    handleUpdateEvent?: (event: EventInterface) => void; // Añade esto si lo usas así
+    handleUpdateEvent?: (event: EventInterface) => void;
 }
 
 const StandardCalendar: React.FC<StandardCalendarProps> = ({ events = [], calendar, onDeleteEvent,
@@ -62,7 +62,6 @@ const StandardCalendar: React.FC<StandardCalendarProps> = ({ events = [], calend
 
     const isSameMonth = (date: Date) => date.getMonth() === currentDate.getMonth();
 
-    // Helper para comparar fechas (sin horas)
     const isSameDay = (date1: Date, date2: Date) =>
         date1.getFullYear() === date2.getFullYear() &&
         date1.getMonth() === date2.getMonth() &&

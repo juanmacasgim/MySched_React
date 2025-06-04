@@ -2,8 +2,8 @@ import React from 'react';
 
 interface EventItemProps {
     title: string;
-    time_start: string; // formato 'HH:mm' o similar
-    time_end?: string; // opcional, formato 'HH:mm'
+    time_start: string;
+    time_end?: string;
     color?: string;
     onClick?: () => void;
 }

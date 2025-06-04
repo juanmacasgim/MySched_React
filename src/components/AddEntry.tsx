@@ -15,7 +15,7 @@ const AddEntry: React.FC<Props> = ({ calendarId, onSave, onCancel }) => {
 
     const handleSave = () => {
         const newEntry: EventInterface = {
-            id: BigInt(Date.now()), // usar backend real en producción
+            id: BigInt(Date.now()),
             calendarId: BigInt(calendarId),
             title,
             description,
