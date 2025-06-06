@@ -6,8 +6,8 @@ import { EventInterface } from '../interfaces/EventInterface';
 // Esta dirección es para despliegue en local
 //export const API_URL = 'http://localhost:8000/api';
 
-// Esta dirección es para el despliegue en Docker
-export const API_URL = 'http://api/api';
+// Esta dirección es para el despliegue en AWS
+export const API_URL = import .meta.env.VITE_API_URL;
 
 /**
  * User Singup
