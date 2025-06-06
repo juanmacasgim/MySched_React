@@ -4,10 +4,10 @@ import { CalendarInterface } from '../interfaces/CalendarInterface';
 import { EventInterface } from '../interfaces/EventInterface';
 
 // Esta dirección es para despliegue en local
-//export const API_URL = 'http://localhost:8080/api';
+//export const API_URL = 'http://localhost:8000/api';
 
-// Esta dirección es para el despliegue en AWS
-export const API_URL = 'http://52.72.108.252:8080/api';
+// Esta dirección es para el despliegue en Docker
+export const API_URL = 'http://api/api';
 
 /**
  * User Singup
