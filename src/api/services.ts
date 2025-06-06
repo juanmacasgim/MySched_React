@@ -3,10 +3,6 @@ import { UserInterface } from '../interfaces/UserInterface';
 import { CalendarInterface } from '../interfaces/CalendarInterface';
 import { EventInterface } from '../interfaces/EventInterface';
 
-// Esta dirección es para despliegue en local
-//export const API_URL = 'http://localhost:8000/api';
-
-// Esta dirección es para el despliegue en AWS
 export const API_URL = import .meta.env.VITE_API_URL;
 
 /**
