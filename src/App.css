@@ -108,10 +108,9 @@ textarea {
 
 
 .home {
-    min-height: 82.7vh;
+    min-height: 93vh;
     background-image: url('./assets/FotoStock.jpg');
     background-size: cover;
-    padding-top: 70px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -119,7 +118,6 @@ textarea {
     text-align: right;
     padding-right: 5vw;
     color : white;
-    
 }
 
 .home-content {

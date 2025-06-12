@@ -12,6 +12,7 @@ function App() {
   }
   return (
     <>
+      <div className="background-image"></div>
       <Navbar
         logo="MySched"
         actions={[
