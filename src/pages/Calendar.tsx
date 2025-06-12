@@ -244,7 +244,10 @@ function Calendar() {
                                     <CalendarButton
                                         calendar={cal}
                                         selected={selectedCalendar?.id === cal.id}
-                                        onClick={() => setSelectedCalendar(cal)}
+                                        onClick={() => {
+                                            setEvents([]);
+                                            setSelectedCalendar(cal);
+                                        }}
                                         onEdit={() => {
                                             setCalendarToEdit(cal);
                                             setEditCalendarOpen(true);

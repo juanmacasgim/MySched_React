@@ -13,6 +13,7 @@ import '../styles/AuthForm.css';
 function AuthForm() {
     const [isLogin, setIsLogin] = useState(true);
     const navigate = useNavigate();
+    const today = new Date().toISOString().slice(0, 10);
 
     useEffect(() => {
         const token = localStorage.getItem('MySchedToken');
@@ -34,7 +35,10 @@ function AuthForm() {
 
     const [showPassword, setShowPassword] = useState(false);
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isEmailValid = emailRegex.test(formData.email);
     const password = formData.password;
+
     const passwordValidations = {
         length: password.length >= 8,
         upper: /[A-Z]/.test(password),
@@ -47,11 +51,11 @@ function AuthForm() {
     const isRegisterValid =
         formData.name.trim() !== '' &&
         formData.birthdate.trim() !== '' &&
-        formData.email.trim() !== '' &&
+        isEmailValid &&
         isPasswordValid;
-        
+
     const isLoginValid =
-        formData.email.trim() !== '' &&
+        isEmailValid &&
         formData.password.trim() !== '';
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,7 +86,10 @@ function AuthForm() {
             setOpen(true);
             setTimeout(() => navigate('/mysched/calendar'), 500);
         } else {
-            if (response.status === 0 && response.message && isLogin) {
+            // Mensaje personalizado para email ya registrado
+            if (!isLogin && response.message === "Email already registered") {
+                setMessage('Ya existe una cuenta registrada con ese correo.');
+            } else if (response.status === 0 && response.message && isLogin) {
                 setMessage('Error al iniciar sesión: ' + response.message);
             } else {
                 setMessage('Error en la autenticación');
@@ -140,6 +147,7 @@ function AuthForm() {
                                 value={formData.birthdate}
                                 onChange={handleChange}
                                 onKeyDown={handleKeyPress}
+                                max={today}
                             />
                         </div>
                     </>
@@ -156,7 +164,15 @@ function AuthForm() {
                         value={formData.email}
                         onChange={handleChange}
                         onKeyDown={handleKeyPress}
+                        style={{
+                            borderColor: formData.email && !isEmailValid ? 'red' : undefined
+                        }}
                     />
+                    {formData.email && !isEmailValid && (
+                        <span style={{ color: 'red', fontSize: 13 }}>
+                            Introduce un email válido (ejemplo@dominio.com)
+                        </span>
+                    )}
                 </div>
 
                 <div className="form-group">
@@ -171,7 +187,7 @@ function AuthForm() {
                             value={formData.password}
                             onChange={handleChange}
                             onKeyDown={handleKeyPress}
-                            style={{width: '92%' }}
+                            style={{ width: '92%' }}
                         />
                         <IconButton
                             aria-label="toggle password visibility"
