@@ -214,7 +214,8 @@ function Calendar() {
                     borderRight: '1px solid #ddd',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: 16
+                    gap: 16,
+                    minHeight: 'calc(100vh - 64px)'
                 }}>
                     <h3>Mis calendarios</h3>
                     <MyButton variant="contained" endIcon={<Add />} onClick={() => setAddOpen(true)}>
